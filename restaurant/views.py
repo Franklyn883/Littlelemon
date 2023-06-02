@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Menu
 from .forms import BookingForm
 
@@ -16,6 +16,7 @@ def book(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
+        return redirect('restaurant:home')
     context = {'form':form}
     return render(request, 'restaurant/book.html', context)
 
